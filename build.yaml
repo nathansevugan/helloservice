@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: helloservice
+parameters:
+- name: APP_NAME
+  description: The name assigned to all of the application objects defined in this template.
+  displayName: Application Name
+  required: true
+  value: helloservice
+- name: GIT_SOURCE_URL
+  description: The source URL for the application
+  displayName: Source URL
+  required: true
+  value: https://github.com/nathansevugan/helloservice.git
+- name: GIT_SOURCE_REF
+  description: The source Ref for the application
+  displayName: Source Ref
+  required: true
+  value: master
+objects:
+#- kind: Secret
+#  apiVersion: v1
+#  metadata:
+#    name: mysecret
+#    creationTimestamp:
+#  data:
+#    WebHookSecretKey: 47c41187474d4dd93b4b7c91b20893704a9de977
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    name: python
+  spec:
+    tags:
+    - from:
+        kind: DockerImage
+        name: openshift/python-33-centos7
+      name: latest
+      importPolicy:
+        scheduled: true
+- apiVersion: v1
+  kind: "BuildConfig"
+  metadata:
+    name: ${APP_NAME}
+  spec:
+    runPolicy: "Serial"
+#    triggers:
+#    - type: "GitHub"
+#      github:
+#        secret: "escaped"
+    output:
+      to:
+        kind: "ImageStreamTag"
+        name: "helloservice:latest"
+    source:
+      git:
+        uri: ${GIT_SOURCE_URL}
+      type: "Git"
+    strategy:
+      sourceStrategy:
+        from:
+          kind: "ImageStreamTag"
+          name: "python:latest"
+        type: "Source"
+        env:
+        - name: "APP_FILE"
+          value: "helloService.py"
