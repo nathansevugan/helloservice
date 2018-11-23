@@ -51,7 +51,7 @@ objects:
         type: Git
       strategy:
         dockerStrategy:
-          dockerfilePath: ./Dockerfile.1
+          dockerfilePath: ./Dockerfile
 
 
 #      strategy:
