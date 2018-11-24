@@ -37,6 +37,10 @@ objects:
       name: helloservice
       namespace: cicd
     spec:
+      triggers:
+        - type: "GitHub"
+          github:
+            secret: "escaped"
       failedBuildsHistoryLimit: 5
       output:
         to:

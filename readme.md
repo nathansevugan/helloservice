@@ -16,4 +16,5 @@ oc new-app --image-stream=helloservice
 
 creates the route
 oc expose svc/helloservice
+
 ```
