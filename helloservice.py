@@ -1,4 +1,4 @@
-import sys
+import os
 
 from flask import Flask
 app = Flask(__name__)
@@ -12,9 +12,7 @@ def hello():
 
 
 if __name__ == '__main__':
-    if (len(sys.argv) == 3):
-        print "overriding default greetings.."
-        greeting = sys.argv[1]
-        message = sys.argv[2]
+    greeting = os.environ['GREETINGS_KEY']
+    message = os.environ['MESSAGE_KEY']
 
     app.run(debug=False, host='0.0.0.0')

@@ -56,27 +56,49 @@ objects:
       strategy:
         dockerStrategy:
           dockerfilePath: ./Dockerfile
-  - apiVersion: v1
-    kind: pod
-    metadata:
-      name: helloservice-pod
-    spec:
-      containers:
-      - name: helloservice
-        image: dev/helloservice:latest
-        command: [ "/bin/sh", "-c", "echo $(GREETINGS_KEY) $(MESSAGE_KEY)" ]
-        env:
-        - name: GREETINGS_KEY
-          valueFrom:
-            configMapKeyRef:
-              name: helloservice-config
-              key: greetings
-        - name: MESSAGE_KEY
-          valueFrom:
-            configMapKeyRef:
-              name: helloservice-config
-              key: message
-#      restartPolicy: Never
+  apiVersion: v1
+  kind: PodPreset
+  metadata:
+    name: helloservice-pod-presets
+  spec:
+    env:
+    - name: GREETINGS_KEY
+      valueFrom:
+        configMapKeyRef:
+          name: helloservice-config
+          key: greetings
+    - name: MESSAGE_KEY
+      valueFrom:
+        configMapKeyRef:
+          name: helloservice-config
+          key: message
+    envFrom:
+      - configMapRef:
+          name: helloservice-config
+#  - apiVersion: v1
+#    kind: Pod
+#    metadata:
+#      name: helloservice-pod
+#    spec:
+#      containers:
+#      - name: helloservice
+#        image: dev/helloservice:latest
+#        command: [ "/bin/sh", "-c", "echo $(GREETINGS_KEY) $(MESSAGE_KEY)" ]
+#        env:
+#        - name: GREETINGS_KEY
+#          valueFrom:
+#            configMapKeyRef:
+#              name: helloservice-config
+#              key: greetings
+#        - name: MESSAGE_KEY
+#          valueFrom:
+#            configMapKeyRef:
+#              name: helloservice-config
+#              key: message
+#        envFrom:
+#          - configMapRef:
+#              name: helloservice-config
+#      restartPolicy: Always
 
 
 
