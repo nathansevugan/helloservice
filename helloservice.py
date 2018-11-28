@@ -12,7 +12,7 @@ def hello():
 
 
 if __name__ == '__main__':
-    greeting = os.environ['GREETINGS_KEY']
-    message = os.environ['MESSAGE_KEY']
+#   greeting = os.environ['GREETINGS_KEY']
+#   message = os.environ['MESSAGE_KEY']
 
     app.run(debug=False, host='0.0.0.0')

@@ -56,25 +56,25 @@ objects:
       strategy:
         dockerStrategy:
           dockerfilePath: ./Dockerfile
-  apiVersion: v1
-  kind: PodPreset
-  metadata:
-    name: helloservice-pod-presets
-  spec:
-    env:
-    - name: GREETINGS_KEY
-      valueFrom:
-        configMapKeyRef:
-          name: helloservice-config
-          key: greetings
-    - name: MESSAGE_KEY
-      valueFrom:
-        configMapKeyRef:
-          name: helloservice-config
-          key: message
-    envFrom:
-      - configMapRef:
-          name: helloservice-config
+#  - apiVersion: settings.k8s.io/v1alpha1
+#    kind: PodPreset
+#    metadata:
+#      name: helloservice-pod-presets
+#    spec:
+#      env:
+#      - name: GREETINGS_KEY
+#        valueFrom:
+#          configMapKeyRef:
+#            name: helloservice-config
+#            key: greetings
+#      - name: MESSAGE_KEY
+#        valueFrom:
+#          configMapKeyRef:
+#            name: helloservice-config
+#            key: message
+#      envFrom:
+#        - configMapRef:
+#            name: helloservice-config
 #  - apiVersion: v1
 #    kind: Pod
 #    metadata:
