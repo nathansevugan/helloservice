@@ -28,7 +28,7 @@ Create "dev" project and follow the steps listed above
 oc describe is/helloservice will provide the sha256 hash code
 
 Tag the image stream for promoting to test
-oc tag helloservice@sha256:9d2f60eeca4528cc69fc245be4ec69f5a517f023d193b7f15bdd36f6bbd263c9 dev/helloservice:promoteToTest
+oc tag helloservice@sha256:c1a76823f67f883f9f70e20302cb9d03bd145978f4bb12e2cd8bde0d77e466d9:promoteToTest
 
 Create "test" project
 oc new-project test
