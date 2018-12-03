@@ -18,6 +18,7 @@ parameters:
   displayName: Source Ref
   required: true
   value: master
+
 objects:
   - apiVersion: v1
     kind: ImageStream
@@ -25,10 +26,11 @@ objects:
       labels:
         app: helloservice
       name: helloservice
-      namespace: cicd
+      namespace: dev
     spec:
       lookupPolicy:
         local: false
+
   - apiVersion: v1
     kind: BuildConfig
     metadata:
