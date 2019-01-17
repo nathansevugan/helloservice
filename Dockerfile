@@ -10,7 +10,6 @@ USER root
 RUN apt-get update -y
 RUN apt-get install -y python-pip python-dev build-essential
 RUN apt-get install curl -y
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh
 
 RUN mkdir /app
 
