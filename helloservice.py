@@ -9,7 +9,7 @@ message = 'Rajesh Sarakinti'
 @app.route("/")
 def hello():
     result = os.environ['HELLOSERVICE_CONFIG']
-    result += os.environ['HELLOSERVICE_CONFIG=greeting']
+    # result += os.environ['HELLOSERVICE_CONFIG=greeting']
     return result + "---" + greeting + " " + message
 
 
