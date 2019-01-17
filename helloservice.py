@@ -8,7 +8,9 @@ message = 'Rajesh Sarakinti'
 
 @app.route("/")
 def hello():
-    return greeting + " " + message
+    result = os.environ['HELLOSERVICE_CONFIG']
+    result += os.environ['HELLOSERVICE_CONFIG=greeting']
+    return result + "---" + greeting + " " + message
 
 
 if __name__ == '__main__':

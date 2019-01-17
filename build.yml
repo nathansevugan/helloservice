@@ -58,6 +58,48 @@ objects:
       strategy:
         dockerStrategy:
           dockerfilePath: ./Dockerfile
+#  - apiVersion: v1
+#    kind: DeploymentConfig
+#    spec:
+#      replicas: 1
+#      selector:
+#        app: helloservice
+#        deploymentconfig: helloservice
+#      strategy:
+#        resources: {}
+#        rollingParams:
+#          intervalSeconds: 1
+#        type: Rolling
+#      template:
+#        metadata:
+#          labels:
+#            app: helloservice
+#            deploymentconfig: helloservice
+#        spec:
+#          containers:
+#          - image: helloservice
+#            imagePullPolicy: Always
+#            name: helloservice
+#            ports:
+#            - containerPort: 5000
+#              protocol: TCP
+#      test: false
+#      triggers:
+#      - type: ConfigChange
+#      - imageChangeParams:
+#          automatic: true
+#          containerNames:
+#          - helloservice
+#          from:
+#            kind: ImageStreamTag
+#            name: helloservice:latest
+#            namespace: dev
+#        type: ImageChange
+
+
+
+
+
 #  - apiVersion: settings.k8s.io/v1alpha1
 #    kind: PodPreset
 #    metadata:
