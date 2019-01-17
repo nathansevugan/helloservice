@@ -18,10 +18,7 @@ objects:
       app: helloservice
       deploymentconfig: helloservice
     strategy:
-      resources: {}
-      rollingParams:
-        intervalSeconds: 1
-      type: Rolling
+      type: Recreate
     template:
       metadata:
         labels:
@@ -30,7 +27,6 @@ objects:
       spec:
         containers:
         - image: helloservice
-          imagePullPolicy: Always
           name: helloservice
           ports:
           - containerPort: 5000
@@ -41,7 +37,7 @@ objects:
               configMapKeyRef:
                 name: helloservice-config
                 key: 1.properties
-    test: false
+    paused: false
     triggers:
     - type: ConfigChange
     - imageChangeParams:
@@ -51,5 +47,5 @@ objects:
         from:
           kind: ImageStreamTag
           name: helloservice:latest
-          namespace: dev
+          namespace: cicd
       type: ImageChange

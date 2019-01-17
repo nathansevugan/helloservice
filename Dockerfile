@@ -5,10 +5,11 @@ MAINTAINER ranganathan.sevuganchetty@sabre.com
 # Define environment variables.
 
 
-#USER root
+USER root
 
 RUN apt-get update -y
 RUN apt-get install -y python-pip python-dev build-essential
+RUN apt-get install curl
 RUN mkdir /app
 
 WORKDIR /app
@@ -26,6 +27,11 @@ RUN pip install Flask
 
 # run as non-root user
 
+USER 1001
+
+# Default http port
+EXPOSE 5000
+
 
 ENTRYPOINT ["python"]
 CMD ["helloservice.py"]
@@ -34,5 +40,3 @@ CMD ["helloservice.py"]
 #CMD  [ "sh", "-c", "python /usr/src/app/helloservice.py&"]
 
 
-# Default http port
-EXPOSE 5000
